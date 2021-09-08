@@ -1,26 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div>
+    <div>{{ currentView }}</div>
+    <component
+      @changePage="handleChangePage($event)"
+      :currentView="currentView"
+      :is="currentView"
+    ></component>
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import FaqContent from './pages/FaqContent.vue'
+import FaqList from './pages/FaqList.vue'
+import Home from './pages/Home.vue'
 
 export default {
-  name: "App",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      currentView: 'Home'
+    }
   },
-};
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  methods: {
+    handleChangePage(event) {
+      this.currentView = event[0]
+    }
+  },
+
+  components: { Home, FaqContent, FaqList },
+
+  created() {
+    this.$store.dispatch('fetchData')
+  }
 }
-</style>
+</script>
