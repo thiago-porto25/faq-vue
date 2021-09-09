@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div>{{ currentView }}</div>
+  <div class="app-comp">
     <component
       @changePage="handleChangePage($event)"
       :currentView="currentView"
@@ -23,7 +22,7 @@ export default {
 
   methods: {
     handleChangePage(event) {
-      this.currentView = event[0]
+      this.currentView = event
     }
   },
 
@@ -34,3 +33,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.app-comp {
+  width: 310px;
+  border: 2px solid #26282c66;
+  box-shadow: 2px 2px 10px #00000066;
+  height: 450px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+</style>

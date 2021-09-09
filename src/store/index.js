@@ -4,8 +4,8 @@ import { faqCategories } from '../utils/db.json'
 export default createStore({
   state: {
     faqData: [],
-    currentSubject: null,
-    currentQuestion: null
+    currentSubject: 0,
+    currentQuestion: 0
   },
   mutations: {
     SET_FAQ_DATA(state, data) {
@@ -33,9 +33,11 @@ export default createStore({
       return state.faqData[state.currentSubject - 1]
     },
     $filteredDataQuestion: (state) => {
-      return state.faqData[state.currentSubject - 1].questions[
-        state.currentQuestion - 1
-      ]
+      const [questionData] = state.faqData[
+        state.currentSubject - 1
+      ].questions.filter((item) => item.id === state.currentQuestion)
+
+      return questionData
     }
   }
 })

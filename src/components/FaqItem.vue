@@ -1,7 +1,7 @@
 <template>
-  <li>
+  <li class="list-item">
     <img v-if="icon" class="icon" :src="`/images/${icon}`" />
-    {{ title }}
+    <p>{{ title }}</p>
   </li>
 </template>
 
@@ -21,8 +21,24 @@ export default {
 </script>
 
 <style scoped>
-.icon {
-  height: 30px;
-  width: 30px;
+.list-item {
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  height: 3rem;
+}
+
+.list-item:hover {
+  background-color: #3f4452;
+}
+
+.list-item img {
+  margin-left: 20px;
+}
+
+.list-item p {
+  margin-left: 30px;
+  width: fit-content;
 }
 </style>
